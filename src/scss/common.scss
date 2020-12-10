@@ -1,0 +1,128 @@
+@import './variables.scss';
+
+section.padded {
+    padding: $section-padding-desktop;
+
+    @media (max-width: $large-desktop-up-breakpoint) {
+        padding: $section-padding-mobile;
+    }
+}
+
+.content-max-width {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+
+    @media (max-width: $breakpoint) {
+        padding: 0 16px;
+    }
+}
+
+.for-mobile {
+    @media (min-width: $breakpoint) {
+        display: none !important;
+    }
+}
+
+.for-desktop {
+    @media (max-width: $breakpoint - 1) {
+        display: none !important;
+    }
+}
+
+.desktop {
+    @media (max-width: $breakpoint-tablet-2 - 1) {
+        display: none !important;
+    }
+}
+
+// for phone and tablet
+.mobile {
+    @media (min-width: $breakpoint-tablet-2) {
+        display: none !important;
+    }
+}
+
+.tablet {
+    @media (max-width: $breakpoint-mobile - 1) {
+        display: none !important;
+    }
+
+    @media (min-width: $breakpoint-tablet-2) {
+        display: none !important;
+    }
+}
+
+.phone {
+    @media (min-width: $breakpoint-mobile) {
+        display: none !important;
+    }
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $breakpoint-tablet) {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.buttons app-kit-button {
+    margin: 0 0 $spacing-level-4 0;
+
+    @media (min-width: $breakpoint-tablet) {
+        margin: 0 $spacing-level-4 0 0;
+    }
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.informational {
+
+    .content-max-width {
+        max-width: 800px;
+    }
+
+    .heading {
+        text-align:  center;
+        color: $color-2;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        position: relative;
+
+        @media (min-width: $desktop-break-point) {
+            padding: 100px 0;
+            margin-bottom: 100px;
+        }
+
+        h1 {
+            font-size: 30px;
+
+            @media (min-width: $desktop-break-point) {
+                font-size: 60px;
+            }
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: $color-grey-4;
+            height: 1px;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 800px;
+
+        }
+    }
+
+}

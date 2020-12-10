@@ -1,0 +1,32 @@
+image: node:9.8
+pipelines:
+    default:
+        - step:
+            script:
+                - npm config set strict-ssl true
+                - npm config set ca ""
+                - echo @zip:registry=https://${MYGET_NPM_REGISTRY_URL} > ~/.npmrc
+                - echo //${MYGET_NPM_REGISTRY_URL}:_password="${MYGET_NPM_APIKEY}" >> ~/.npmrc
+                - echo //${MYGET_NPM_REGISTRY_URL}:username=${MYGET_NPM_USERNAME} >> ~/.npmrc
+                - echo //${MYGET_NPM_REGISTRY_URL}:email=user@myget >> ~/.npmrc
+                - echo //${MYGET_NPM_REGISTRY_URL}:always-auth=true >> ~/.npmrc
+                - sh .scripts/npm-version-bouncer.sh package.json
+                - npm install
+                - npm run build
+                - npm pack
+    branches:
+        master:
+            - step:
+                script:
+                    - npm config set strict-ssl true
+                    - npm config set ca ""
+                    - echo @zip:registry=https://${MYGET_NPM_REGISTRY_URL} > ~/.npmrc
+                    - echo //${MYGET_NPM_REGISTRY_URL}:_password="${MYGET_NPM_APIKEY}" >> ~/.npmrc
+                    - echo //${MYGET_NPM_REGISTRY_URL}:username=${MYGET_NPM_USERNAME} >> ~/.npmrc
+                    - echo //${MYGET_NPM_REGISTRY_URL}:email=user@myget >> ~/.npmrc
+                    - echo //${MYGET_NPM_REGISTRY_URL}:always-auth=true >> ~/.npmrc
+                    - sh .scripts/npm-version-bouncer.sh package.json
+                    - npm install
+                    - npm run build
+                    - npm pack
+                    - npm publish

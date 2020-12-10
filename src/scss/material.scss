@@ -1,0 +1,244 @@
+@import './variables';
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$zip-blue: (
+  50: $zipCta,
+  100: $zipCta,
+  200: $zipCta,
+  300: $zipCta,
+  400: $zipCta,
+  500: $zipCta,
+  600: $zipCta,
+  700: $zipCta,
+  800: $zipCta,
+  900: $zipCta,
+  A100: $zipCta,
+  A200: $zipCta,
+  A400: $zipCta,
+  A700: $zipCta,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$candy-app-primary: mat-palette($zip-blue);
+$candy-app-accent:  mat-palette($zip-blue, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+
+$mat-custom-primary: (
+    500: #1c70f2,
+);
+
+$mat-custom-red: (
+    500: $error-red,
+);
+
+$mat-custom-theme-foreground: (
+    divider: #a5abc1,
+    dividers: #a5abc1,
+);
+
+$custom-typography: mat-typography-config(
+    $font-family: 'Rubik, san-serif',
+);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core($custom-typography);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$custom-primary: mat-palette(map-merge($mat-indigo, $mat-custom-primary));
+$custom-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$custom-warn: mat-palette(map-merge($mat-red, $mat-custom-red));
+
+// Create the theme object (a Sass map containing all of the palettes).
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme(
+        (
+            primary: $custom-primary,
+            accent: $custom-accent,
+            warn: $custom-warn,
+            is-dark: false,
+            foreground: map-merge($mat-light-theme-foreground, $mat-custom-theme-foreground),
+            background: $mat-light-theme-background,
+        )
+);
+
+.mat-form-field:not(.mat-focused) {
+    .mat-form-field-flex:hover {
+        .mat-form-field-outline {
+            .mat-form-field-outline-start,
+            .mat-form-field-outline-gap,
+            .mat-form-field-outline-end {
+                border-width: 1px;
+            }
+        }
+    }
+}
+
+.mat-form-field-appearance-outline {
+    .mat-form-field-outline {
+        background: #ffffff;
+        color: #dddde3;
+    }
+
+    .mat-form-field-outline-thick {
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end,
+        .mat-form-field-outline-gap {
+            border-width: 1px;
+        }
+    }
+}
+
+.mat-form-field-wrapper {
+    margin: $space * 0.5 0 0 0 !important;
+    padding-bottom: $space * 2.5;
+}
+
+.mat-form-field-label {
+    color: $grey-medium;
+}
+
+.mat-select-value {
+    color: $zipNavy;
+}
+
+.mat-select-arrow {
+    width: 8px !important;
+    height: 8px !important;
+    border-left: none !important;
+    border-top: none !important;
+    border-right: 1.5px solid !important;
+    border-bottom: 1.5px solid !important;
+    transform: rotate(45deg) !important;
+    margin: 0 4px !important;
+}
+
+.mat-hint {
+    color: $grey-medium;
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+.cdk-global-overlay-wrapper {
+    align-items: normal !important;
+}
+.cdk-overlay-pane {
+    max-width: 36vw !important;
+}
+
+.mat-dialog-container {
+    .mat-dialog-actions {
+        padding: 0;
+        margin: 0;
+    }
+
+    .mat-dialog-title {
+        display: flex;
+        height: 9vh;
+        margin: unset;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .mat-dialog-content {
+        max-height: 88vh !important;
+        -webkit-overflow-scrolling: auto;
+    }
+
+    padding: 0 24px 0 !important;
+}
+
+input.mat-input-element {
+    color: $input-text;
+}
+
+input.mat-input-element::placeholder {
+    color: #6e7396;
+    opacity: 0.3;
+}
+
+div.mat-form-field-subscript-wrapper {
+    position: static;
+    font-size: 12px;
+}
+
+.small-modal-container {
+    .mat-dialog-container {
+        max-width: 340px;
+        padding: 25px !important;
+    }
+}
+
+.mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-outline {
+    color: rgba(25, 25, 25, 0.32);
+}
+
+.mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-label {
+    color: $light-grey-1;
+}
+
+.mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+    color: $light-grey-1;
+}
+
+.mat-input-element:disabled {
+    color: $light-grey-1;
+}
+
+.mat-select-disabled .mat-select-value {
+    color: $light-grey-1;
+}
+
+input:disabled {
+    opacity: 1 !important;
+    -webkit-text-fill-color: $light-grey-1 !important;
+}
+
+@media only screen and (max-width: 800px) {
+    .cdk-overlay-pane {
+        max-width: 100vw !important;
+    }
+}

@@ -1,0 +1,33 @@
+@import './scss/variables';
+@import './scss/common';
+@import './scss/fonts';
+@import "./scss/reset";
+@import './scss/material';
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+
+    .no-scroll{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+* {
+    font-family: $font-family-1;
+}
+
+h1 {
+    line-height: normal;
+}
+
+
+#_elev_io ._1g6cj,
+#_hj_poll_container > div {
+    z-index: 100 !important;
+}
+

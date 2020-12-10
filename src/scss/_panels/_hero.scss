@@ -1,0 +1,45 @@
+.hero {
+    height: calc(100vh - 56px);
+    background-image: url('https://zip-co-media.imgix.net/home-mobile.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 100px;
+    text-align: center;
+
+    @media (min-width: $breakpoint) {
+        text-align: left;
+        padding-top: 200px;
+        height: calc(100vh - 68px);
+        background-image: url('https://zip-co-media.imgix.net/home.jpg');
+    }
+
+    h1 {
+        font-weight: 600;
+        margin-bottom: 20px;
+        font-size: 40px;
+
+        @media (min-width: $breakpoint) {
+            font-size: 60px;
+        }
+
+    }
+
+    h2 {
+        font-size: 25px;
+        font-weight: 300;
+        margin-bottom: 20px;
+
+
+        @media (min-width: $breakpoint) {
+            font-size: 28px;
+        }
+    }
+
+    .buttons {
+        .btn {
+            margin: 15px 15px 0 0;
+            min-width: 270px;
+        }
+    }
+}

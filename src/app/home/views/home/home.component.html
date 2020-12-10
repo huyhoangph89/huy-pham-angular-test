@@ -1,0 +1,9 @@
+<h1>Test Huy Pham</h1>
+
+<section class="input-section padded">
+    <div class="content-max-width">
+        <span class="input-section__label">Input animation speed</span>
+        <input class="input-section__input" type="text" (keyup.enter)="getVal($event.target.value)" />
+    </div>
+</section>
+<box *ngIf="value" [speed]="value"></box>

@@ -1,0 +1,60 @@
+.long-panel {
+    padding-bottom: 56px;
+    
+    &:before {
+        background-color: $color-3;
+    }
+
+    .item {
+        width: 270px;
+        text-align: center;
+        color: $color-2;
+        margin-bottom: 40px;
+        
+        &:last-child {
+            margin-bottom: 0px;
+        }   
+        
+        @media (min-width: $breakpoint-tablet) { 
+            padding: 5px;
+        }
+        
+        @media (min-width: $breakpoint) { 
+            margin-bottom: 0px;
+            width: 30%;
+        }
+
+        img {
+            width: 45px;
+            margin-bottom: 8px;
+
+            @media (min-width: $breakpoint-desktop) {
+                width: 50px;
+            }
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 15px;
+
+            @media (min-width: $breakpoint-desktop) {
+                font-size: 30px;
+                font-weight: 600;
+            }
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 300;
+            max-width: 230px;
+            margin: 0 auto;
+            line-height: 20px;
+
+            @media (min-width: $breakpoint-desktop) {
+                font-size: 18px;
+                line-height: 24px;
+            }
+        }
+    }
+}

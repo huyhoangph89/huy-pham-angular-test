@@ -1,0 +1,71 @@
+@import "./variables/animations.scss";
+@import "./variables/breakpoints";
+@import "./variables/colors";
+@import "./variables/fonts";
+@import "./variables/mixins";
+@import "./variables/shadows";
+@import "./variables/spacing";
+@import "./variables/z-index";
+@import "./variables/urls";
+
+$space: 0.5rem;
+
+$breakpoint: 1280px;
+$breakpoint-desktop: 1280px;
+$breakpoint-tablet: 768px;
+$breakpoint-tablet-2: 1024px;
+$breakpoint-mobile: 500px;
+
+// Common Breakpoints used for responsive banners
+$mobile-up-breakpoint: 490px;
+$tablet-up-breakpoint: 768px;
+$desktop-up-breakpoint: 1024px;
+$large-desktop-up-breakpoint: 1200px;
+
+$max-content-width: 1200px;
+
+// Some of these colours are similar but not the same as the ones in
+// the styles library
+$color-1: #21285E;
+$color-2: #21285E;
+$color-3: #FD7055;
+$color-4: #43CAC4;
+$color-5: #21285E;
+$color-6: #414CA1;
+$color-white: #FFFFFF;
+
+$color-light-grey-4: #F2F2F2;
+
+$color-grey-1: #F9F9Fb;
+$color-grey-2: #F5F6F9;
+$color-grey-3: #E8E8EC;
+$color-grey-4: #EBEBEB;
+$color-grey-5: #A5ABC1;
+$color-grey-medium: #6E7396;
+$error-red: #b00020;
+
+$color-blue-1: #434776;
+$color-blue-2: #171B41;
+$navy-medium: #424876;
+$grey-medium: #6e7396;
+$zipCta: #1C70F2;
+$zipYellow: #F8991C;
+$zipRed: #F15C3E;
+$zipTeal: #00AEB8;
+$zipNavy: $color-2;
+$zipBlue: $color-2;
+$zipGrey: $color-grey-2;
+$blue-hover: #1659c1;
+$disabled: #1c70f2;
+$section-padding-desktop-size: 80px;
+$section-padding-desktop: 80px 0;
+
+$section-padding-mobile-size: 40px;
+$section-padding-mobile: 40px 16px;
+$gutter: 16px;
+$box-shadow: 0px 24px 32px rgba(12, 0, 51, 0.05);
+$input-text: #21285e;
+$light-grey-1: #a5abc1;
+$light-grey-2: #dddde3;
+$light-grey-3: #f2f2f2;
+$blue-tint: #F8FAFB;

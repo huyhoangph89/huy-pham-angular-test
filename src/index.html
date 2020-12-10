@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Register service worker -->
+        <script async>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {})
+                    .catch(function(err) { console.log('ServiceWorker registration failed: ', err)
+                })
+            }
+        </script>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <title>Huy Pham Angular Test</title>
+        <base href="/">
+        <noscript>
+            <p>This page requires JavaScript to work properly. Please enable JavaScript in your browser.</p>
+        </noscript>
+    </head>
+    <body>
+        <app-root></app-root>
+    </body>
+</html>

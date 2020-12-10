@@ -1,0 +1,19 @@
+@mixin no-scrollbar(){
+    &::-webkit-scrollbar { width: 0 !important; @include drag-hand(); }
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::placeholder { @content; }
+}
+
+@mixin truncate-text($truncation-boundary) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

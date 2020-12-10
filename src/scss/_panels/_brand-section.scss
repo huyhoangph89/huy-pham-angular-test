@@ -1,0 +1,96 @@
+.brand-section {
+    padding-bottom: 56px;
+
+    &:before {
+        background-color: $color-4;
+        background-image: linear-gradient(104deg, #43cac4, #00aeb8);
+        bottom: 30% !important;
+
+        @media (min-width: $breakpoint-desktop) { 
+            bottom: 50% !important;
+        }
+    }
+
+
+    h2 {
+        margin-bottom: 80px !important;
+    }
+
+    .container {
+        @media (min-width: $breakpoint) { 
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .brand-panel {
+        padding: 50px 20px;
+        color: $color-2;
+        
+        @media (max-width: $breakpoint) { 
+            &:first-child {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (min-width: $breakpoint) { 
+            width: 48%;
+        }
+
+        img {
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 300px;
+
+            &.zippay {
+                max-height: 40px;
+            }
+
+            @media (min-width: $breakpoint-tablet) { 
+                max-height: 50px;
+                max-width: auto;
+                width: auto;
+
+                &.zipmoney {
+                    max-height: 72px;
+                }
+            }
+        }
+
+        .title {
+            font-size: 27px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            color: $color-4;
+            font-weight: 600;
+            font-size: 32px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+
+            // &:after {
+            //     content: '';
+            //     display: block;
+            //     position: absolute;
+            //     top: 100%;
+            //     left: 10%;
+            //     right: 10%;
+            //     height: 1px;
+            //     background-color: $color-4;
+            // }
+        }
+
+        p {
+            max-width: 300px;
+            min-height: 100px;
+            margin: 0 auto;
+            font-size: 19px;
+            font-weight: 300;
+            line-height: 28px;
+        }
+    }
+}

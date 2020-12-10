@@ -1,0 +1,904 @@
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/router'), require('@angular/common'), require('check-types'), require('@angular/forms'), require('@angular/animations'), require('lodash'), require('@angular/core'), require('rxjs')) :
+    typeof define === 'function' && define.amd ? define('@zip/web.components', ['exports', '@angular/router', '@angular/common', 'check-types', '@angular/forms', '@angular/animations', 'lodash', '@angular/core', 'rxjs'], factory) :
+    (factory((global.zip = global.zip || {}, global.zip.web = global.zip.web || {}, global.zip.web.components = {}),global.ng.router,global.ng.common,global.checkTypes,global.ng.forms,global.ng.animations,global.lodash,global.ng.core,global.rxjs));
+}(this, (function (exports,router,common,checkTypes,forms,animations,lodash,i0,rxjs) { 'use strict';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var HrefDirective = /** @class */ (function () {
+        function HrefDirective() {
+            this.zipHref = '';
+        }
+        /**
+         * @return {?}
+         */
+        HrefDirective.prototype.onClick = /**
+         * @return {?}
+         */
+            function () {
+                window.location.assign(this.zipHref);
+            };
+        HrefDirective.decorators = [
+            { type: i0.Directive, args: [{
+                        selector: '[zipHref]'
+                    },] }
+        ];
+        HrefDirective.propDecorators = {
+            zipHref: [{ type: i0.Input }],
+            onClick: [{ type: i0.HostListener, args: ['click', ['$event'],] }]
+        };
+        return HrefDirective;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} value
+     * @param {?} writeFunction
+     * @return {?}
+     */
+    function numericInputIfValid(value, writeFunction) {
+        if (!value.match(/\D/g)) {
+            return;
+        }
+        writeFunction(value.replace(/\D/g, ''));
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var NumericInputDirective = /** @class */ (function () {
+        function NumericInputDirective(control) {
+            this.control = control;
+        }
+        /**
+         * @return {?}
+         */
+        NumericInputDirective.prototype.ngOnInit = /**
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                this.control.valueChanges.subscribe(( /**
+                 * @param {?} value
+                 * @return {?}
+                 */function (value) {
+                    return numericInputIfValid(value, ( /**
+                     * @param {?} u
+                     * @return {?}
+                     */function (u) { return _this.control.valueAccessor.writeValue(u); }));
+                }));
+            };
+        NumericInputDirective.decorators = [
+            { type: i0.Directive, args: [{
+                        selector: '[zipNumericInput]'
+                    },] }
+        ];
+        /** @nocollapse */
+        NumericInputDirective.ctorParameters = function () {
+            return [
+                { type: forms.NgControl }
+            ];
+        };
+        return NumericInputDirective;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var RouterBackDirective = /** @class */ (function () {
+        function RouterBackDirective(ngLocation) {
+            this.ngLocation = ngLocation;
+        }
+        /**
+         * @return {?}
+         */
+        RouterBackDirective.prototype.onClick = /**
+         * @return {?}
+         */
+            function () {
+                this.ngLocation.back();
+            };
+        RouterBackDirective.decorators = [
+            { type: i0.Directive, args: [{
+                        selector: '[zipRouterBack]'
+                    },] }
+        ];
+        /** @nocollapse */
+        RouterBackDirective.ctorParameters = function () {
+            return [
+                { type: common.Location }
+            ];
+        };
+        RouterBackDirective.propDecorators = {
+            onClick: [{ type: i0.HostListener, args: ['click', ['$event'],] }]
+        };
+        return RouterBackDirective;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /*
+        - Template Usage -
+
+        const str = 'Lorem {{value}}'
+        const args = { value: 'ipsum' }
+
+        <div>
+            {{ str | formatContent: args }}
+        </div>
+    */
+    var FormatContentPipe = /** @class */ (function () {
+        function FormatContentPipe() {
+        }
+        /**
+         * @param {?} str
+         * @param {?} args
+         * @return {?}
+         */
+        FormatContentPipe.prototype.transform = /**
+         * @param {?} str
+         * @param {?} args
+         * @return {?}
+         */
+            function (str, args) {
+                if (!str) {
+                    return '';
+                }
+                if (!args) {
+                    throw Error('No arguments provided');
+                }
+                return str.replace(/{{(\w+)}}/g, ( /**
+                 * @param {?} match
+                 * @param {?} word
+                 * @return {?}
+                 */function (match, word) {
+                    if (!lodash.has(args, word)) {
+                        throw Error(word + " was not found in the dictionary " + JSON.stringify(args));
+                    }
+                    if (!checkTypes.string(args[word]) && !checkTypes.number(args[word])) {
+                        throw Error("Arguments must be a string or number " + JSON.stringify(args));
+                    }
+                    return args[word];
+                }));
+            };
+        FormatContentPipe.decorators = [
+            { type: i0.Pipe, args: [{ name: 'formatContent' },] }
+        ];
+        return FormatContentPipe;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var HeaderCartComponent = /** @class */ (function () {
+        function HeaderCartComponent() {
+            this.parsedAmount = '00.00';
+            this.items = 0;
+        }
+        Object.defineProperty(HeaderCartComponent.prototype, "amount", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this.parsedAmount;
+            },
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this.parsedAmount = parseFloat(value).toFixed(2);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        HeaderCartComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-header-cart',
+                        template: "\n        <div>{{ items }}</div>\n        <zip-icon src=\"cart\"></zip-icon>\n        <p>{{ parsedAmount }}</p>\n    ",
+                        styles: ["*{-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-Mac-osx-font-smoothing:grayscale;box-sizing:border-box;list-style-type:none;text-decoration:none;color:inherit;font-family:Rubik,sans-serif}:active,:focus{outline:0}.align-center{text-align:center}.align-left{text-align:left}.align-right{text-align:right}a,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:28px;line-height:32px;margin-bottom:28px}@media (min-width:769px){h1{font-size:30px;line-height:34px}}h2{font-size:26px;line-height:30px;margin-bottom:24px}@media (min-width:769px){h2{font-size:28px;line-height:32px}}h3{font-size:24px;line-height:28px;margin-bottom:20px}@media (min-width:769px){h3{font-size:26px;line-height:30px}}h4{font-size:22px;line-height:26px;margin-bottom:16px}@media (min-width:769px){h4{font-size:24px;line-height:28px}}h5{font-size:20px;line-height:22px;margin-bottom:12px}@media (min-width:769px){h5{font-size:22px;line-height:26px}}h6{font-size:18px;line-height:20px;margin-bottom:8px}@media (min-width:769px){h6{font-size:20px;line-height:24px}}a{color:#3e85f4;text-decoration:underline}a,label,p{font-size:14px;line-height:18px;font-weight:400;margin-bottom:4px}@media (min-width:769px){a,label,p{font-size:16px;line-height:22px;margin-bottom:8px}}label{display:block}em{font-size:inherit;font-weight:600}code{display:block;font-size:14px;font-family:Inconsolata,monospace;padding:10px;background:#eee;border-radius:4px;white-space:pre-wrap}.margin-bottom-level-0{margin-bottom:0!important}.margin-bottom-level-1{margin-bottom:4px!important}.margin-bottom-level-2{margin-bottom:8px!important}.margin-bottom-level-3{margin-bottom:12px!important}.margin-bottom-level-4{margin-bottom:16px!important}.margin-bottom-level-5{margin-bottom:20px!important}.margin-bottom-level-6{margin-bottom:24px!important}.margin-bottom-level-7{margin-bottom:28px!important}.margin-bottom-level-8{margin-bottom:32px!important}.margin-bottom-level-9{margin-bottom:36px!important}.margin-bottom-level-10{margin-bottom:40px!important}:host{display:block;text-align:center;cursor:default}:host ::ng-deep>*{position:relative;z-index:1;color:#1b1e63;margin:0}div{background-color:#f15c3e;color:#fff;height:14px;width:14px;font-weight:600;border-radius:50%;display:flex;justify-content:center;align-items:center;margin:0 0 -9px auto;z-index:2;font-size:10px}zip-icon{font-size:24px}p{line-height:10px;font-size:10px;letter-spacing:.5px}"]
+                    }] }
+        ];
+        HeaderCartComponent.propDecorators = {
+            items: [{ type: i0.Input }],
+            amount: [{ type: i0.Input }]
+        };
+        return HeaderCartComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var HeaderComponent = /** @class */ (function () {
+        function HeaderComponent() {
+        }
+        HeaderComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-header',
+                        template: "\n    <div class=\"left\">\n        <ng-content select=\"zip-header-left\"></ng-content>\n    </div>\n    <div class=\"center\">\n        <ng-content select=\"zip-header-center\"></ng-content>\n    </div>\n    <div class=\"left\">\n        <ng-content select=\"zip-header-right\"></ng-content>\n    </div>\n  ",
+                        styles: ["*{-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-Mac-osx-font-smoothing:grayscale;box-sizing:border-box;list-style-type:none;text-decoration:none;color:inherit;font-family:Rubik,sans-serif}:active,:focus{outline:0}.align-center{text-align:center}.align-left{text-align:left}.align-right{text-align:right}a,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:28px;line-height:32px;margin-bottom:28px}@media (min-width:769px){h1{font-size:30px;line-height:34px}}h2{font-size:26px;line-height:30px;margin-bottom:24px}@media (min-width:769px){h2{font-size:28px;line-height:32px}}h3{font-size:24px;line-height:28px;margin-bottom:20px}@media (min-width:769px){h3{font-size:26px;line-height:30px}}h4{font-size:22px;line-height:26px;margin-bottom:16px}@media (min-width:769px){h4{font-size:24px;line-height:28px}}h5{font-size:20px;line-height:22px;margin-bottom:12px}@media (min-width:769px){h5{font-size:22px;line-height:26px}}h6{font-size:18px;line-height:20px;margin-bottom:8px}@media (min-width:769px){h6{font-size:20px;line-height:24px}}a{color:#3e85f4;text-decoration:underline}a,label,p{font-size:14px;line-height:18px;font-weight:400;margin-bottom:4px}@media (min-width:769px){a,label,p{font-size:16px;line-height:22px;margin-bottom:8px}}label{display:block}em{font-size:inherit;font-weight:600}code{display:block;font-size:14px;font-family:Inconsolata,monospace;padding:10px;background:#eee;border-radius:4px;white-space:pre-wrap}.margin-bottom-level-0{margin-bottom:0!important}.margin-bottom-level-1{margin-bottom:4px!important}.margin-bottom-level-2{margin-bottom:8px!important}.margin-bottom-level-3{margin-bottom:12px!important}.margin-bottom-level-4{margin-bottom:16px!important}.margin-bottom-level-5{margin-bottom:20px!important}.margin-bottom-level-6{margin-bottom:24px!important}.margin-bottom-level-7{margin-bottom:28px!important}.margin-bottom-level-8{margin-bottom:32px!important}.margin-bottom-level-9{margin-bottom:36px!important}.margin-bottom-level-10{margin-bottom:40px!important}:host{height:60px;background-color:#fff;border-bottom:1px solid #e0e0e0;position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;padding:0 16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.center{position:absolute;top:0;bottom:0;left:0;right:0;z-index:1;display:flex;justify-content:center;align-items:center}.left,.right{position:relative;z-index:2;height:100%}"]
+                    }] }
+        ];
+        return HeaderComponent;
+    }());
+    var HeaderLeftComponent = /** @class */ (function () {
+        function HeaderLeftComponent() {
+        }
+        HeaderLeftComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-header-left',
+                        template: '<ng-content></ng-content>',
+                        styles: [":host{display:flex;justify-content:center;align-items:center;height:100%}"]
+                    }] }
+        ];
+        return HeaderLeftComponent;
+    }());
+    var HeaderRightComponent = /** @class */ (function () {
+        function HeaderRightComponent() {
+        }
+        HeaderRightComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-header-right',
+                        template: '<ng-content></ng-content>',
+                        styles: [":host{display:flex;justify-content:center;align-items:center;height:100%}"]
+                    }] }
+        ];
+        return HeaderRightComponent;
+    }());
+    var HeaderCenterComponent = /** @class */ (function () {
+        function HeaderCenterComponent() {
+        }
+        HeaderCenterComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-header-center',
+                        template: '<ng-content></ng-content>',
+                        styles: [":host{display:flex;justify-content:center;align-items:center;height:100%}"]
+                    }] }
+        ];
+        return HeaderCenterComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var IconComponent = /** @class */ (function () {
+        function IconComponent() {
+            this.icon = '';
+        }
+        Object.defineProperty(IconComponent.prototype, "src", {
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this.icon = "zip-icon zip-icon-" + value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        IconComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-icon',
+                        template: '',
+                        styles: ["@import url(https://zip.co/assets/zip/icons/style.css);:host{display:inline-block}"]
+                    }] }
+        ];
+        IconComponent.propDecorators = {
+            icon: [{ type: i0.HostBinding, args: ['class',] }],
+            src: [{ type: i0.Input }]
+        };
+        return IconComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var constants = {
+        cdn: 'https://zip.co/assets/',
+        toasts: {
+            defaultDurationMilliseconds: 5000
+        },
+        messages: {
+            invalidInput: 'Invalid Input'
+        }
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var InputComponent = /** @class */ (function () {
+        function InputComponent() {
+            this.label = '';
+            this.placeholder = '';
+            this.type = 'text';
+            this.iconLeft = '';
+            this.iconRight = '';
+            this.formControl = new forms.FormControl();
+            this.errorMessages = {};
+            this.value = '';
+            this.onTouchedCallback = ( /**
+             * @return {?}
+             */function () { });
+            this.onChangeCallback = ( /**
+             * @return {?}
+             */function () { });
+        }
+        Object.defineProperty(InputComponent.prototype, "pending", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this.formControl.status === 'PENDING';
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(InputComponent.prototype, "invalid", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return this.formControl.touched && this.formControl.status === 'INVALID';
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(InputComponent.prototype, "error", {
+            get: /**
+             * @return {?}
+             */ function () {
+                var _this = this;
+                if (!this.formControl.errors) {
+                    return null;
+                }
+                /** @type {?} */
+                var error = Object.keys(this.formControl.errors)
+                    .map(( /**
+             * @param {?} validationError
+             * @return {?}
+             */function (validationError) { return _this.errorMessages[validationError]; }))[0];
+                return error || constants.messages.invalidInput;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        InputComponent.prototype.writeValue = /**
+         * @param {?} value
+         * @return {?}
+         */
+            function (value) {
+                if (value === this.formControl.value) {
+                    return;
+                }
+                this.formControl.setValue(value);
+                this.onChangeCallback(value);
+            };
+        /**
+         * @param {?} fn
+         * @return {?}
+         */
+        InputComponent.prototype.registerOnChange = /**
+         * @param {?} fn
+         * @return {?}
+         */
+            function (fn) {
+                this.onChangeCallback = fn;
+            };
+        /**
+         * @param {?} fn
+         * @return {?}
+         */
+        InputComponent.prototype.registerOnTouched = /**
+         * @param {?} fn
+         * @return {?}
+         */
+            function (fn) {
+                this.onTouchedCallback = fn;
+            };
+        InputComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-input',
+                        template: "<label *ngIf=\"label\">{{ label }}</label>\n\n<div class=\"input-container\">\n    <span\n        class=\"zip-icon icon-left\"\n        *ngIf=\"iconLeft\"\n        [ngClass]=\"'zip-icon-' + iconLeft\">\n    </span>\n\n    <span\n        class=\"zip-icon icon-right\"\n        *ngIf=\"iconRight\"\n        [ngClass]=\"'zip-icon-' + iconRight\">\n    </span>\n\n    <input\n        [formControl]=\"formControl\"\n        (blur)=\"onTouchedCallback()\"\n        [placeholder]=\"placeholder\"\n        [type]=\"type\"\n        class=\"zip-input\"\n        [class.INVALID]=\"invalid\"\n        [class.has-icon-left]=\"iconLeft\"\n        [class.has-icon-right]=\"iconRight\"\n        value=formControl.value/>\n\n    <zip-input-notice\n        *ngIf=\"invalid\"\n        [message]=\"error\"\n        theme=\"error\">\n    </zip-input-notice>\n</div>\n",
+                        providers: [
+                            {
+                                provide: forms.NG_VALUE_ACCESSOR,
+                                useExisting: i0.forwardRef(( /**
+                                 * @return {?}
+                                 */function () { return InputComponent; })),
+                                multi: true
+                            }
+                        ],
+                        styles: ["*{-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-Mac-osx-font-smoothing:grayscale;box-sizing:border-box;list-style-type:none;text-decoration:none;color:inherit;font-family:Rubik,sans-serif}:active,:focus{outline:0}.align-center{text-align:center}.align-left{text-align:left}.align-right{text-align:right}a,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:28px;line-height:32px;margin-bottom:28px}@media (min-width:769px){h1{font-size:30px;line-height:34px}}h2{font-size:26px;line-height:30px;margin-bottom:24px}@media (min-width:769px){h2{font-size:28px;line-height:32px}}h3{font-size:24px;line-height:28px;margin-bottom:20px}@media (min-width:769px){h3{font-size:26px;line-height:30px}}h4{font-size:22px;line-height:26px;margin-bottom:16px}@media (min-width:769px){h4{font-size:24px;line-height:28px}}h5{font-size:20px;line-height:22px;margin-bottom:12px}@media (min-width:769px){h5{font-size:22px;line-height:26px}}h6{font-size:18px;line-height:20px;margin-bottom:8px}@media (min-width:769px){h6{font-size:20px;line-height:24px}}a{color:#3e85f4;text-decoration:underline}a,label,p{font-size:14px;line-height:18px;font-weight:400;margin-bottom:4px}@media (min-width:769px){a,label,p{font-size:16px;line-height:22px;margin-bottom:8px}}em{font-size:inherit;font-weight:600}code{display:block;font-size:14px;font-family:Inconsolata,monospace;padding:10px;background:#eee;border-radius:4px;white-space:pre-wrap}.margin-bottom-level-0{margin-bottom:0!important}.margin-bottom-level-1{margin-bottom:4px!important}.margin-bottom-level-2{margin-bottom:8px!important}.margin-bottom-level-3{margin-bottom:12px!important}.margin-bottom-level-4{margin-bottom:16px!important}.margin-bottom-level-5{margin-bottom:20px!important}.margin-bottom-level-6{margin-bottom:24px!important}.margin-bottom-level-7{margin-bottom:28px!important}.margin-bottom-level-8{margin-bottom:32px!important}.margin-bottom-level-9{margin-bottom:36px!important}.margin-bottom-level-10{margin-bottom:40px!important}:host{display:block;position:relative;margin-bottom:24px}label{margin-bottom:8px;display:block;color:#bdbdbd;font-weight:500}.input-container{position:relative}.input-container .zip-input{width:100%;box-sizing:border-box;border-radius:4px;background-color:#fff;border:1px solid #e0e0e0;height:48px;line-height:48px;padding:0 16px;transition:box-shadow .25s,border-color .25s;outline:0;font-size:16px;font-weight:400}.input-container .zip-input:active,.input-container .zip-input:focus{border:1px solid #1c70f2}.input-container .zip-input::-webkit-input-placeholder{color:#bdbdbd;font-size:16px;font-weight:400;font-family:Rubik,sans-serif}.input-container .zip-input::-moz-placeholder{color:#bdbdbd;font-size:16px;font-weight:400;font-family:Rubik,sans-serif}.input-container .zip-input:-ms-input-placeholder{color:#bdbdbd;font-size:16px;font-weight:400;font-family:Rubik,sans-serif}.input-container .zip-input::-ms-input-placeholder{color:#bdbdbd;font-size:16px;font-weight:400;font-family:Rubik,sans-serif}.input-container .zip-input::placeholder{color:#bdbdbd;font-size:16px;font-weight:400;font-family:Rubik,sans-serif}.input-container .zip-input.has-icon-left{padding-left:64px}.input-container .zip-input.has-icon-right{padding-right:64px}.input-container .zip-input.INVALID,.input-container .zip-input.error{border-color:#c32126}.input-container .zip-input.success{border-color:#208642}.input-container .zip-icon{z-index:2;position:absolute;top:0;height:48px;width:64px;display:flex;justify-content:center;align-items:center;color:#bdbdbd;font-size:22px;pointer-events:none}.input-container .zip-icon.icon-left{left:0}.input-container .zip-icon.icon-right{right:0}.input-container zip-input-notice{position:absolute;top:calc(-24px /2);right:8px}"]
+                    }] }
+        ];
+        InputComponent.propDecorators = {
+            label: [{ type: i0.Input }],
+            placeholder: [{ type: i0.Input }],
+            type: [{ type: i0.Input }],
+            iconLeft: [{ type: i0.Input }],
+            iconRight: [{ type: i0.Input }],
+            formControl: [{ type: i0.Input }],
+            errorMessages: [{ type: i0.Input }],
+            value: [{ type: i0.Input }]
+        };
+        return InputComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var noticeAnimation = [
+        animations.trigger('in-out', [
+            animations.transition(':enter', [
+                animations.animate('250ms ease-in', animations.keyframes([
+                    animations.style({
+                        opacity: 0,
+                        transform: 'translate3d(0, 5px, 0)'
+                    }),
+                    animations.style({
+                        opacity: 1,
+                        transform: 'translate3d(0, 0, 0)'
+                    })
+                ]))
+            ]),
+            animations.transition(':leave', [
+                animations.animate('250ms ease-in', animations.keyframes([
+                    animations.style({
+                        opacity: 1,
+                        transform: 'translate3d(0, 0, 0)'
+                    }),
+                    animations.style({
+                        opacity: 0,
+                        transform: 'translate3d(0, 5px, 0)'
+                    })
+                ]))
+            ]),
+        ])
+    ];
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var InputNoticeComponent = /** @class */ (function () {
+        function InputNoticeComponent() {
+        }
+        Object.defineProperty(InputNoticeComponent.prototype, "theme", {
+            set: /**
+             * @param {?} value
+             * @return {?}
+             */ function (value) {
+                this.color = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        InputNoticeComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-input-notice',
+                        template: '{{ message }}',
+                        animations: noticeAnimation,
+                        styles: ["*{-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-Mac-osx-font-smoothing:grayscale;box-sizing:border-box;list-style-type:none;text-decoration:none;color:inherit;font-family:Rubik,sans-serif}:active,:focus{outline:0}.align-center{text-align:center}.align-left{text-align:left}.align-right{text-align:right}a,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:28px;line-height:32px;margin-bottom:28px}@media (min-width:769px){h1{font-size:30px;line-height:34px}}h2{font-size:26px;line-height:30px;margin-bottom:24px}@media (min-width:769px){h2{font-size:28px;line-height:32px}}h3{font-size:24px;line-height:28px;margin-bottom:20px}@media (min-width:769px){h3{font-size:26px;line-height:30px}}h4{font-size:22px;line-height:26px;margin-bottom:16px}@media (min-width:769px){h4{font-size:24px;line-height:28px}}h5{font-size:20px;line-height:22px;margin-bottom:12px}@media (min-width:769px){h5{font-size:22px;line-height:26px}}h6{font-size:18px;line-height:20px;margin-bottom:8px}@media (min-width:769px){h6{font-size:20px;line-height:24px}}a{color:#3e85f4;text-decoration:underline}a,label,p{font-size:14px;line-height:18px;font-weight:400;margin-bottom:4px}@media (min-width:769px){a,label,p{font-size:16px;line-height:22px;margin-bottom:8px}}label{display:block}em{font-size:inherit;font-weight:600}code{display:block;font-size:14px;font-family:Inconsolata,monospace;padding:10px;background:#eee;border-radius:4px;white-space:pre-wrap}.margin-bottom-level-0{margin-bottom:0!important}.margin-bottom-level-1{margin-bottom:4px!important}.margin-bottom-level-2{margin-bottom:8px!important}.margin-bottom-level-3{margin-bottom:12px!important}.margin-bottom-level-4{margin-bottom:16px!important}.margin-bottom-level-5{margin-bottom:20px!important}.margin-bottom-level-6{margin-bottom:24px!important}.margin-bottom-level-7{margin-bottom:28px!important}.margin-bottom-level-8{margin-bottom:32px!important}.margin-bottom-level-9{margin-bottom:36px!important}.margin-bottom-level-10{margin-bottom:40px!important}:host{display:inline-block;line-height:24px;padding:0 8px;border-radius:12px;font-size:12px;letter-spacing:.6px;font-weight:500;box-shadow:0 8px 16px 0 rgba(51,51,51,.1);color:#fff;background-color:#e0e0e0}:host.primary{background-color:#1c70f2}:host.error{background-color:#c32126}:host.warning{background-color:#f8991c}:host.success{background-color:#208642}"]
+                    }] }
+        ];
+        InputNoticeComponent.propDecorators = {
+            color: [{ type: i0.HostBinding, args: ['class',] }],
+            message: [{ type: i0.HostBinding, args: ['@in-out',] }, { type: i0.Input }],
+            theme: [{ type: i0.Input }]
+        };
+        return InputNoticeComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @enum {number} */
+    var LogoType = {
+        zip: 0,
+        zipmoney: 1,
+        zippay: 2,
+    };
+    LogoType[LogoType.zip] = 'zip';
+    LogoType[LogoType.zipmoney] = 'zipmoney';
+    LogoType[LogoType.zippay] = 'zippay';
+    var LogoComponent = /** @class */ (function () {
+        function LogoComponent() {
+            this.logo = LogoType.zip;
+        }
+        Object.defineProperty(LogoComponent.prototype, "logoMap", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return "https://zip.co/assets/zip/logos/" + this.logo + "/primary.svg";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        LogoComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-logo',
+                        template: "<img\n    [src]=\"logoMap\"\n    [alt]=\"logo\" />\n",
+                        styles: ["img{display:block;max-height:27px}"]
+                    }] }
+        ];
+        LogoComponent.propDecorators = {
+            logo: [{ type: i0.Input }]
+        };
+        return LogoComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var PanelComponent = /** @class */ (function () {
+        function PanelComponent() {
+        }
+        PanelComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-panel',
+                        template: "<div class=\"panel\">\n    <ng-content></ng-content>\n</div>\n",
+                        styles: ["*{-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-Mac-osx-font-smoothing:grayscale;box-sizing:border-box;list-style-type:none;text-decoration:none;color:inherit;font-family:Rubik,sans-serif}:active,:focus{outline:0}.align-center{text-align:center}.align-left{text-align:left}.align-right{text-align:right}a,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:28px;line-height:32px;margin-bottom:28px}@media (min-width:769px){h1{font-size:30px;line-height:34px}}h2{font-size:26px;line-height:30px;margin-bottom:24px}@media (min-width:769px){h2{font-size:28px;line-height:32px}}h3{font-size:24px;line-height:28px;margin-bottom:20px}@media (min-width:769px){h3{font-size:26px;line-height:30px}}h4{font-size:22px;line-height:26px;margin-bottom:16px}@media (min-width:769px){h4{font-size:24px;line-height:28px}}h5{font-size:20px;line-height:22px;margin-bottom:12px}@media (min-width:769px){h5{font-size:22px;line-height:26px}}h6{font-size:18px;line-height:20px;margin-bottom:8px}@media (min-width:769px){h6{font-size:20px;line-height:24px}}a{color:#3e85f4;text-decoration:underline}a,label,p{font-size:14px;line-height:18px;font-weight:400;margin-bottom:4px}@media (min-width:769px){a,label,p{font-size:16px;line-height:22px;margin-bottom:8px}}label{display:block}em{font-size:inherit;font-weight:600}code{display:block;font-size:14px;font-family:Inconsolata,monospace;padding:10px;background:#eee;border-radius:4px;white-space:pre-wrap}.margin-bottom-level-0{margin-bottom:0!important}.margin-bottom-level-1{margin-bottom:4px!important}.margin-bottom-level-2{margin-bottom:8px!important}.margin-bottom-level-3{margin-bottom:12px!important}.margin-bottom-level-4{margin-bottom:16px!important}.margin-bottom-level-5{margin-bottom:20px!important}.margin-bottom-level-6{margin-bottom:24px!important}.margin-bottom-level-7{margin-bottom:28px!important}.margin-bottom-level-8{margin-bottom:32px!important}.margin-bottom-level-9{margin-bottom:36px!important}.margin-bottom-level-10{margin-bottom:40px!important}:host{position:absolute;top:0;bottom:0;left:0;right:0;z-index:1}.panel{width:100%;background-color:#fff;margin:60px 0 0;padding:24px 16px}@media (min-width:769px){.panel{max-width:600px;margin:94px auto 34px;border-radius:4px;border:1px solid #e0e0e0;padding:48px 76px}}"]
+                    }] }
+        ];
+        return PanelComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var PanelHeadingComponent = /** @class */ (function () {
+        function PanelHeadingComponent() {
+        }
+        PanelHeadingComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-panel-heading',
+                        template: "<ng-content select=\"h1\"></ng-content>\n<ng-content select=\"h2\"></ng-content>\n<ng-content select=\"a\"></ng-content>\n",
+                        styles: ["*{-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-Mac-osx-font-smoothing:grayscale;box-sizing:border-box;list-style-type:none;text-decoration:none;color:inherit;font-family:Rubik,sans-serif}:active,:focus{outline:0}.align-center{text-align:center}.align-left{text-align:left}.align-right{text-align:right}a,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:28px;line-height:32px;margin-bottom:28px}@media (min-width:769px){h1{font-size:30px;line-height:34px}}h2{font-size:26px;line-height:30px;margin-bottom:24px}@media (min-width:769px){h2{font-size:28px;line-height:32px}}h3{font-size:24px;line-height:28px;margin-bottom:20px}@media (min-width:769px){h3{font-size:26px;line-height:30px}}h4{font-size:22px;line-height:26px;margin-bottom:16px}@media (min-width:769px){h4{font-size:24px;line-height:28px}}h5{font-size:20px;line-height:22px;margin-bottom:12px}@media (min-width:769px){h5{font-size:22px;line-height:26px}}h6{font-size:18px;line-height:20px;margin-bottom:8px}@media (min-width:769px){h6{font-size:20px;line-height:24px}}a{color:#3e85f4;text-decoration:underline}a,label,p{font-size:14px;line-height:18px;font-weight:400;margin-bottom:4px}@media (min-width:769px){a,label,p{font-size:16px;line-height:22px;margin-bottom:8px}}label{display:block}em{font-size:inherit;font-weight:600}code{display:block;font-size:14px;font-family:Inconsolata,monospace;padding:10px;background:#eee;border-radius:4px;white-space:pre-wrap}.margin-bottom-level-0{margin-bottom:0!important}.margin-bottom-level-1{margin-bottom:4px!important}.margin-bottom-level-2{margin-bottom:8px!important}.margin-bottom-level-3{margin-bottom:12px!important}.margin-bottom-level-4{margin-bottom:16px!important}.margin-bottom-level-5{margin-bottom:20px!important}.margin-bottom-level-6{margin-bottom:24px!important}.margin-bottom-level-7{margin-bottom:28px!important}.margin-bottom-level-8{margin-bottom:32px!important}.margin-bottom-level-9{margin-bottom:36px!important}.margin-bottom-level-10{margin-bottom:40px!important}:host{text-align:center;margin-bottom:26px;display:flex;flex-direction:column;justify-content:center;align-items:center}:host ::ng-deep :last-child{padding-bottom:0;margin-bottom:0}:host ::ng-deep h1{display:block;font-size:22px;color:#424242;margin-bottom:16px;text-align:center;font-weight:500}@media (min-width:769px){:host ::ng-deep h1{font-size:26px}}:host ::ng-deep h2{display:block;font-size:16px;font-weight:400;color:#757575;margin-bottom:16px;line-height:1.75;text-align:center}:host ::ng-deep a{color:#3e85f4;text-decoration:none;display:flex;justify-content:center}"]
+                    }] }
+        ];
+        return PanelHeadingComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var LoadingSpinnerComponent = /** @class */ (function () {
+        function LoadingSpinnerComponent() {
+        }
+        LoadingSpinnerComponent.decorators = [
+            { type: i0.Component, args: [{
+                        selector: 'zip-loading-spinner',
+                        template: "<div class=\"zip-spinner\">\n    <div id=\"spin1\" class=\"spin\"></div>\n    <div id=\"spin2\" class=\"spin\"></div>\n    <div id=\"spin3\" class=\"spin\"></div>\n    <div id=\"spin4\" class=\"spin\"></div>\n</div>\n",
+                        styles: ["*{-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-Mac-osx-font-smoothing:grayscale;box-sizing:border-box;list-style-type:none;text-decoration:none;color:inherit;font-family:Rubik,sans-serif}:active,:focus{outline:0}.align-center{text-align:center}.align-left{text-align:left}.align-right{text-align:right}a,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:28px;line-height:32px;margin-bottom:28px}@media (min-width:769px){h1{font-size:30px;line-height:34px}}h2{font-size:26px;line-height:30px;margin-bottom:24px}@media (min-width:769px){h2{font-size:28px;line-height:32px}}h3{font-size:24px;line-height:28px;margin-bottom:20px}@media (min-width:769px){h3{font-size:26px;line-height:30px}}h4{font-size:22px;line-height:26px;margin-bottom:16px}@media (min-width:769px){h4{font-size:24px;line-height:28px}}h5{font-size:20px;line-height:22px;margin-bottom:12px}@media (min-width:769px){h5{font-size:22px;line-height:26px}}h6{font-size:18px;line-height:20px;margin-bottom:8px}@media (min-width:769px){h6{font-size:20px;line-height:24px}}a{color:#3e85f4;text-decoration:underline}a,label,p{font-size:14px;line-height:18px;font-weight:400;margin-bottom:4px}@media (min-width:769px){a,label,p{font-size:16px;line-height:22px;margin-bottom:8px}}label{display:block}em{font-size:inherit;font-weight:600}code{display:block;font-size:14px;font-family:Inconsolata,monospace;padding:10px;background:#eee;border-radius:4px;white-space:pre-wrap}.margin-bottom-level-0{margin-bottom:0!important}.margin-bottom-level-1{margin-bottom:4px!important}.margin-bottom-level-2{margin-bottom:8px!important}.margin-bottom-level-3{margin-bottom:12px!important}.margin-bottom-level-4{margin-bottom:16px!important}.margin-bottom-level-5{margin-bottom:20px!important}.margin-bottom-level-6{margin-bottom:24px!important}.margin-bottom-level-7{margin-bottom:28px!important}.margin-bottom-level-8{margin-bottom:32px!important}.margin-bottom-level-9{margin-bottom:36px!important}.margin-bottom-level-10{margin-bottom:40px!important}.zip-spinner{width:70px;height:70px;margin:24px auto;position:relative}.spin{width:70px;height:70px;position:absolute}.spin:before{content:'';height:28px;width:28px;border-radius:50%;position:absolute}#spin1:before{background-color:#f8991c}#spin2:before{background-color:#1b1e63}#spin3:before{background-color:#00aeb8}#spin4:before{background-color:#f15c3e}#spin1{transform:rotate(360deg);-webkit-animation:1s linear infinite timer1;animation:1s linear infinite timer1}#spin2{transform:rotate(270deg);-webkit-animation:1s linear -.25s infinite timer1;animation:1s linear -.25s infinite timer1}#spin3{transform:rotate(180deg);-webkit-animation:1s linear -.5s infinite timer1;animation:1s linear -.5s infinite timer1}#spin4{transform:rotate(90deg);-webkit-animation:1s linear -.75s infinite timer1;animation:1s linear -.75s infinite timer1}@-webkit-keyframes timer1{0%{transform:rotate(360deg)}25%{transform:rotate(270deg)}50%{transform:rotate(180deg)}75%{transform:rotate(90deg)}100%{transform:rotate(0)}}@keyframes timer1{0%{transform:rotate(360deg)}25%{transform:rotate(270deg)}50%{transform:rotate(180deg)}75%{transform:rotate(90deg)}100%{transform:rotate(0)}}"]
+                    }] }
+        ];
+        return LoadingSpinnerComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ZipWebComponentsModule = /** @class */ (function () {
+        function ZipWebComponentsModule() {
+        }
+        ZipWebComponentsModule.decorators = [
+            { type: i0.NgModule, args: [{
+                        imports: [
+                            common.CommonModule,
+                            router.RouterModule,
+                            forms.FormsModule,
+                            forms.ReactiveFormsModule
+                        ],
+                        declarations: [
+                            HrefDirective,
+                            NumericInputDirective,
+                            RouterBackDirective,
+                            FormatContentPipe,
+                            HeaderCartComponent,
+                            HeaderCenterComponent,
+                            HeaderComponent,
+                            HeaderLeftComponent,
+                            HeaderRightComponent,
+                            IconComponent,
+                            InputComponent,
+                            InputNoticeComponent,
+                            LogoComponent,
+                            PanelComponent,
+                            PanelHeadingComponent,
+                            LoadingSpinnerComponent
+                        ],
+                        exports: [
+                            HrefDirective,
+                            NumericInputDirective,
+                            RouterBackDirective,
+                            FormatContentPipe,
+                            HeaderCartComponent,
+                            HeaderCenterComponent,
+                            HeaderComponent,
+                            HeaderLeftComponent,
+                            HeaderRightComponent,
+                            IconComponent,
+                            InputComponent,
+                            InputNoticeComponent,
+                            LogoComponent,
+                            PanelComponent,
+                            PanelHeadingComponent,
+                            LoadingSpinnerComponent
+                        ]
+                    },] }
+        ];
+        return ZipWebComponentsModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} stringControlToMatch
+     * @return {?}
+     */
+    function matchValidator(stringControlToMatch) {
+        return ( /**
+         * @param {?} control
+         * @return {?}
+         */function (control) {
+            /** @type {?} */
+            var areNotEqual = control.value !== stringControlToMatch.value;
+            if (areNotEqual) {
+                return { match: { value: control.value } };
+            }
+        });
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} invalidValues
+     * @return {?}
+     */
+    function notInValidator(invalidValues) {
+        return ( /**
+         * @param {?} control
+         * @return {?}
+         */function (control) {
+            if (lodash.includes(invalidValues, control.value)) {
+                return { notIn: { value: control.value } };
+            }
+        });
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CustomValidators = /** @class */ (function () {
+        function CustomValidators() {
+        }
+        CustomValidators.match = matchValidator;
+        CustomValidators.notIn = notInValidator;
+        return CustomValidators;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @template T
+     */
+    var /**
+     * @template T
+     */ ComponentInstance = /** @class */ (function () {
+        function ComponentInstance(componentRef) {
+            this.componentRef = componentRef;
+            this.subscriptions = new rxjs.Subscription();
+            this.destroyActions = [];
+        }
+        Object.defineProperty(ComponentInstance.prototype, "element", {
+            get: /**
+             * @return {?}
+             */ function () {
+                return ( /** @type {?} */((( /** @type {?} */(this.componentRef.hostView)))
+                    .rootNodes[0]));
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} key
+         * @param {?} value
+         * @return {THIS}
+         */
+        ComponentInstance.prototype.setProp = /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} key
+         * @param {?} value
+         * @return {THIS}
+         */
+            function (key, value) {
+                if (!key || !value) {
+                    return ( /** @type {?} */(this));
+                }
+                ( /** @type {?} */(this)).componentRef.instance[key] = value;
+                return ( /** @type {?} */(this));
+            };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} key
+         * @param {?} callback
+         * @return {THIS}
+         */
+        ComponentInstance.prototype.onEvent = /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} key
+         * @param {?} callback
+         * @return {THIS}
+         */
+            function (key, callback) {
+                if (!key || !callback) {
+                    return ( /** @type {?} */(this));
+                }
+                if (!( /** @type {?} */(this)).componentRef.instance[key]) {
+                    return ( /** @type {?} */(this));
+                }
+                ( /** @type {?} */(this)).subscriptions.add(( /** @type {?} */(this)).componentRef.instance[key].subscribe(callback));
+                return ( /** @type {?} */(this));
+            };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} callback
+         * @return {THIS}
+         */
+        ComponentInstance.prototype.onDestroy = /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} callback
+         * @return {THIS}
+         */
+            function (callback) {
+                ( /** @type {?} */(this)).destroyActions.push(callback);
+                return ( /** @type {?} */(this));
+            };
+        /**
+         * @return {?}
+         */
+        ComponentInstance.prototype.destroy = /**
+         * @return {?}
+         */
+            function () {
+                this.subscriptions.unsubscribe();
+                this.componentRef.destroy();
+                this.destroyActions.forEach(( /**
+                 * @param {?} action
+                 * @return {?}
+                 */function (action) { return action(); }));
+                this.destroyActions = [];
+            };
+        return ComponentInstance;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ComponentService = /** @class */ (function () {
+        function ComponentService(componentFactoryResolver, appRef, injector) {
+            this.componentFactoryResolver = componentFactoryResolver;
+            this.appRef = appRef;
+            this.injector = injector;
+        }
+        /**
+         * @template T
+         * @param {?} component
+         * @return {?}
+         */
+        ComponentService.prototype.instantiate = /**
+         * @template T
+         * @param {?} component
+         * @return {?}
+         */
+            function (component) {
+                var _this = this;
+                /** @type {?} */
+                var componentRef = this.componentFactoryResolver
+                    .resolveComponentFactory(component)
+                    .create(this.injector);
+                this.appRef.attachView(componentRef.hostView);
+                /** @type {?} */
+                var instance = new ComponentInstance(componentRef);
+                instance.onDestroy(( /**
+                 * @return {?}
+                 */function () { return _this.appRef.detachView(componentRef.hostView); }));
+                return instance;
+            };
+        ComponentService.decorators = [
+            { type: i0.Injectable, args: [{
+                        providedIn: 'root'
+                    },] }
+        ];
+        /** @nocollapse */
+        ComponentService.ctorParameters = function () {
+            return [
+                { type: i0.ComponentFactoryResolver },
+                { type: i0.ApplicationRef },
+                { type: i0.Injector }
+            ];
+        };
+        /** @nocollapse */ ComponentService.ngInjectableDef = i0.defineInjectable({ factory: function ComponentService_Factory() { return new ComponentService(i0.inject(i0.ComponentFactoryResolver), i0.inject(i0.ApplicationRef), i0.inject(i0.INJECTOR)); }, token: ComponentService, providedIn: "root" });
+        return ComponentService;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    exports.ZipWebComponentsModule = ZipWebComponentsModule;
+    exports.CustomValidators = CustomValidators;
+    exports.LogoType = LogoType;
+    exports.LogoComponent = LogoComponent;
+    exports.ComponentService = ComponentService;
+    exports.ComponentInstance = ComponentInstance;
+    exports.ɵe = HeaderCartComponent;
+    exports.ɵi = HeaderCenterComponent;
+    exports.ɵf = HeaderComponent;
+    exports.ɵg = HeaderLeftComponent;
+    exports.ɵh = HeaderRightComponent;
+    exports.ɵj = IconComponent;
+    exports.ɵm = noticeAnimation;
+    exports.ɵl = InputNoticeComponent;
+    exports.ɵk = InputComponent;
+    exports.ɵp = LoadingSpinnerComponent;
+    exports.ɵo = PanelHeadingComponent;
+    exports.ɵn = PanelComponent;
+    exports.ɵa = HrefDirective;
+    exports.ɵb = NumericInputDirective;
+    exports.ɵc = RouterBackDirective;
+    exports.ɵd = FormatContentPipe;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+
+//# sourceMappingURL=zip-web.components.umd.js.map

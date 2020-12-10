@@ -1,0 +1,44 @@
+section.stores {
+    color: $color-2;
+
+    .stores-feature {
+        margin-bottom: 50px;
+
+        @media (min-width: $breakpoint) {
+            display: flex;
+            margin-bottom: 80px;
+        }
+
+        * {
+            background-position: center;
+            background-size: cover;
+            box-sizing: border-box;
+        }
+
+        >div {
+            display: flex;
+            flex-flow: row wrap;
+            
+            @media (min-width: $breakpoint) {
+                width: 48%;
+            }
+        }
+
+        .large {
+            height: 400px;
+
+            border: 5px solid white;
+        }
+
+        .small {
+            height: 200px;
+            width: 50%;
+            border: 5px solid white;
+
+            @media (min-width: $breakpoint) {
+                height: 200px;
+                width: 200px;
+            }
+        }
+    }
+}

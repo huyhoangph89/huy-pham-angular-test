@@ -1,0 +1,24 @@
+@import "../variables";
+
+.cdk-overlay-pane {
+    width: 500px;
+    height: auto;
+    max-height: 60%;
+    border-radius: 8px;
+    overflow: auto;
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 16px;
+    }
+}
+
+.mat-dialog-container {
+    background-color: #ffffff;
+    padding: 32px !important;
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: 24px !important;
+    }
+}

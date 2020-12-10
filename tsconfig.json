@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "~env": ["src/environments/environment"],
+      "~constants": ["src/constants"],
+      "~lib": ["src/app/lib"],
+      "~contentful-backup": ["src/constants/contentfulBackup"],
+
+      "~shop": ["src/app/shop/shop.module"],
+      "~shop/*": ["src/app/shop/*"],
+
+      "~home": ["src/app/home/home.module"],
+      "~home/*": ["src/app/home/*"],
+
+      "~common": ["src/app/common/productpage.module"],
+      "~common/*": ["src/app/common/*"],
+
+      "~shared": ["src/app/shared/shared.module"],
+      "~shared/*": ["src/app/shared/*"]
+    }
+  }
+}
